@@ -1,0 +1,8 @@
+FROM ubuntu:22.04
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y python3 iproute2 tcpdump iputils-ping net-tools && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+RUN mkdir -p /app/tcp /app/rudp /app/logs /app/received /app/captures /app/testfiles
+COPY tcp/tcp_client.py /app/tcp/
+COPY rudp/rudp_client.py /app/rudp/
+CMD ["sleep", "infinity"]

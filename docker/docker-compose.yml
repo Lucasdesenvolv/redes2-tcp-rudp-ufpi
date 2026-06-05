@@ -1,0 +1,37 @@
+version: "3.9"
+
+networks:
+  testnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
+
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.server
+    container_name: redes2_server
+    networks:
+      testnet:
+        ipv4_address: 172.28.0.10
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    command: bash -c "mkdir -p /app/logs /app/received && python3 /app/tcp/tcp_server.py --port 9001 --log /app/logs/tcp_server.log & python3 /app/rudp/rudp_server.py --port 9002 --log /app/logs/rudp_server.log & wait"
+
+  client:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.client
+    container_name: redes2_client
+    networks:
+      testnet:
+        ipv4_address: 172.28.0.20
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    depends_on:
+      - server
+    command: sleep infinity
