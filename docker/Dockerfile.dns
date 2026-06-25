@@ -1,0 +1,13 @@
+FROM ubuntu:22.04
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+RUN apt-get update && apt-get install -y python3 iproute2 net-tools && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+RUN mkdir -p /app/dns /app/logs
+
+COPY dns/dns_server.py /app/dns/
+COPY dns/hosts.txt /app/dns/
+
+EXPOSE 9053/udp
+
+CMD ["python3", "/app/dns/dns_server.py", "--port", "9053", "--zone", "/app/dns/hosts.txt", "--log", "/app/logs/dns_server.log"]

@@ -1,10 +1,28 @@
 FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
 RUN apt-get update && apt-get install -y python3 iproute2 tcpdump iputils-ping net-tools && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-RUN mkdir -p /app/tcp /app/rudp /app/logs /app/received /app/captures /app/testfiles
+RUN mkdir -p /app/tcp /app/rudp /app/http/www /app/logs /app/received /app/captures /app/testfiles
+
+# Fase 2 (mantido — demonstra reuso/evolução, conforme pedido no enunciado)
 COPY tcp/tcp_server.py /app/tcp/
 COPY rudp/rudp_server.py /app/rudp/
+
+# Fase 3 — Miniservidor HTTP/1.1 sobre TCP e sobre R-UDP
+COPY http/http_common.py /app/http/
+COPY http/http_server_tcp.py /app/http/
+COPY http/http_server_rudp.py /app/http/
+COPY http/www/ /app/http/www/
+
 EXPOSE 9001/tcp
 EXPOSE 9002/udp
-CMD ["bash", "-c", "python3 /app/tcp/tcp_server.py --port 9001 --log /app/logs/tcp_server.log & python3 /app/rudp/rudp_server.py --port 9002 --log /app/logs/rudp_server.log & wait"]
+EXPOSE 8080/tcp
+EXPOSE 9092/udp
+
+CMD ["bash", "-c", "\
+    python3 /app/tcp/tcp_server.py --port 9001 --log /app/logs/tcp_server.log & \
+    python3 /app/rudp/rudp_server.py --port 9002 --log /app/logs/rudp_server.log & \
+    python3 /app/http/http_server_tcp.py --port 8080 --www /app/http/www --log /app/logs/http_tcp_server.log & \
+    python3 /app/http/http_server_rudp.py --port 9092 --www /app/http/www --log /app/logs/http_rudp_server.log & \
+    wait"]

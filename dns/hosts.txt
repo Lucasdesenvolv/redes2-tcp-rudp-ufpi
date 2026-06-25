@@ -1,0 +1,10 @@
+# hosts.txt — Arquivo de zona estático do Mini-DNS
+# Redes de Computadores II — UFPI 2026-1 | Lucas Araújo Moura | Mat: 20249016095
+#
+# Formato: <nome>  <ip>
+# Linhas iniciadas com # são comentários e são ignoradas.
+
+webserver.redes2.local 172.28.0.10
+
+# Registro de exemplo para demonstrar NXDOMAIN (nome não encontrado).
+# nao-existe.redes2.local nunca deve ser adicionado aqui de propósito.

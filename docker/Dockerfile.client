@@ -1,8 +1,19 @@
 FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
 RUN apt-get update && apt-get install -y python3 iproute2 tcpdump iputils-ping net-tools && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
-RUN mkdir -p /app/tcp /app/rudp /app/logs /app/received /app/captures /app/testfiles
+RUN mkdir -p /app/tcp /app/rudp /app/dns /app/http /app/client /app/logs /app/received /app/captures /app/testfiles
+
+# Fase 2 (mantido)
 COPY tcp/tcp_client.py /app/tcp/
 COPY rudp/rudp_client.py /app/rudp/
+
+# Fase 3 — DNS + HTTP/1.1 (TCP e R-UDP) + orquestrador
+COPY dns/dns_client.py /app/dns/
+COPY http/http_common.py /app/http/
+COPY http/http_client_tcp.py /app/http/
+COPY http/http_client_rudp.py /app/http/
+COPY client/web_client.py /app/client/
+
 CMD ["sleep", "infinity"]

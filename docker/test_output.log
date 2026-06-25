@@ -1,0 +1,257 @@
+nohup: ignoring input
+==============================================
+ Fase 3 — Redes de Computadores II — UFPI 2026-1
+ DNS + HTTP/1.1 sobre TCP e R-UDP
+ Execuções por combinação: 10
+ Início: dom, 21 de jun de 2026 17:16:14
+==============================================
+
+==============================================
+ CENÁRIO A — perda=0% delay=10ms (simétrico nos 3 containers)
+==============================================
+Verificação (deve ser igual nos 3):
+  redes2_client: qdisc netem 8011: root refcnt 13 limit 1000 delay 10ms
+  redes2_server: qdisc netem 8012: root refcnt 13 limit 1000 delay 10ms
+  redes2_dns: qdisc netem 8013: root refcnt 13 limit 1000 delay 10ms
+--- 17:16:16 | arquivo=100kb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 100kb    | DNS=   49.8ms | HTTP=   116.7ms | total=   167.2ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   20.7ms | HTTP=    84.7ms | total=   105.6ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   21.3ms | HTTP=    81.9ms | total=   103.3ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   21.0ms | HTTP=    81.5ms | total=   103.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   20.6ms | HTTP=    81.4ms | total=   102.1ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   20.8ms | HTTP=    81.4ms | total=   102.3ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   20.7ms | HTTP=    81.1ms | total=   102.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   20.6ms | HTTP=    81.4ms | total=   102.8ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   20.6ms | HTTP=    81.4ms | total=   102.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=   21.1ms | HTTP=    81.3ms | total=   103.1ms |   102400b | retrans=   0 | ok=True
+    -> levou 4s
+--- 17:16:20 | arquivo=100kb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 100kb    | DNS=   20.7ms | HTTP=  1817.3ms | total=  1838.5ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   20.7ms | HTTP=  1792.8ms | total=  1813.8ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   20.4ms | HTTP=  1793.6ms | total=  1814.7ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   21.1ms | HTTP=  1808.8ms | total=  1830.2ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   20.8ms | HTTP=  1804.6ms | total=  1826.1ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   20.8ms | HTTP=  1800.1ms | total=  1821.4ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   21.0ms | HTTP=  1798.9ms | total=  1820.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   20.6ms | HTTP=  1797.8ms | total=  1818.6ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   20.5ms | HTTP=  1798.5ms | total=  1819.1ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=   20.5ms | HTTP=  1796.2ms | total=  1816.8ms |   102400b | retrans=   0 | ok=True
+    -> levou 21s
+--- 17:16:41 | arquivo=1mb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.6ms | HTTP=   182.0ms | total=   203.2ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.8ms | HTTP=   173.2ms | total=   195.1ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.4ms | HTTP=   177.6ms | total=   198.6ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.6ms | HTTP=   184.4ms | total=   206.0ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.5ms | HTTP=   176.5ms | total=   198.2ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.9ms | HTTP=   173.1ms | total=   194.5ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   42.0ms | HTTP=   188.1ms | total=   230.9ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.8ms | HTTP=   184.8ms | total=   206.3ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.5ms | HTTP=   172.0ms | total=   193.0ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=   20.6ms | HTTP=   172.3ms | total=   193.4ms |  1048576b | retrans=   0 | ok=True
+    -> levou 5s
+--- 17:16:46 | arquivo=1mb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.5ms | HTTP=  6545.9ms | total=  6567.0ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.6ms | HTTP=  6567.7ms | total=  6589.2ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.8ms | HTTP=  6549.9ms | total=  6571.2ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.7ms | HTTP=  6532.3ms | total=  6553.5ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   21.0ms | HTTP=  6516.4ms | total=  6537.9ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.8ms | HTTP=  6536.2ms | total=  6557.5ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.6ms | HTTP=  6561.9ms | total=  6583.0ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.5ms | HTTP=  6540.1ms | total=  6561.1ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.9ms | HTTP=  6546.3ms | total=  6567.7ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=   20.6ms | HTTP=  6535.9ms | total=  6557.0ms |  1048576b | retrans=   0 | ok=True
+    -> levou 68s
+--- 17:17:54 | arquivo=10mb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.6ms | HTTP=  2450.2ms | total=  2475.0ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.7ms | HTTP=  2966.3ms | total=  2991.3ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.8ms | HTTP=  2762.3ms | total=  2787.5ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.7ms | HTTP=  2645.2ms | total=  2670.8ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.6ms | HTTP=  2602.5ms | total=  2627.3ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.9ms | HTTP=  2581.6ms | total=  2607.0ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.4ms | HTTP=  2574.6ms | total=  2599.4ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.6ms | HTTP=  2629.5ms | total=  2654.6ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   21.1ms | HTTP=  2671.8ms | total=  2697.2ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=   20.9ms | HTTP=  2749.3ms | total=  2774.6ms | 10485760b | retrans=   0 | ok=True
+    -> levou 30s
+--- 17:18:24 | arquivo=10mb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.5ms | HTTP= 53859.7ms | total= 53884.6ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.7ms | HTTP= 53931.3ms | total= 53956.4ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.7ms | HTTP= 53773.5ms | total= 53798.8ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.6ms | HTTP= 53803.4ms | total= 53828.3ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.8ms | HTTP= 53748.1ms | total= 53773.4ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.7ms | HTTP= 53989.4ms | total= 54014.7ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   21.2ms | HTTP= 53807.5ms | total= 53833.7ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.8ms | HTTP= 53810.7ms | total= 53835.9ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.7ms | HTTP= 53912.1ms | total= 53936.9ms | 10485760b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=   20.9ms | HTTP= 53773.3ms | total= 53798.3ms | 10485760b | retrans=   0 | ok=True
+    -> levou 543s
+ Cenário A concluído em 11 min
+
+==============================================
+ CENÁRIO B — perda=5% delay=50ms (simétrico nos 3 containers)
+==============================================
+Verificação (deve ser igual nos 3):
+  redes2_client: qdisc netem 8014: root refcnt 13 limit 1000 delay 50ms loss 5%
+  redes2_server: qdisc netem 8015: root refcnt 13 limit 1000 delay 50ms loss 5%
+  redes2_dns: qdisc netem 8016: root refcnt 13 limit 1000 delay 50ms loss 5%
+--- 17:27:29 | arquivo=100kb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 100kb    | DNS=  100.8ms | HTTP=   620.0ms | total=   721.5ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  101.3ms | HTTP=   504.7ms | total=   606.6ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  100.5ms | HTTP=   903.2ms | total=  1004.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  100.6ms | HTTP=   604.1ms | total=   704.9ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  100.6ms | HTTP=  1004.3ms | total=  1105.2ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  100.6ms | HTTP=  1913.1ms | total=  2013.9ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  100.7ms | HTTP=   968.7ms | total=  1069.6ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  100.6ms | HTTP=   502.1ms | total=   602.9ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS= 1101.7ms | HTTP=   502.1ms | total=  1604.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  100.4ms | HTTP=   602.1ms | total=   702.7ms |   102400b | retrans=   0 | ok=True
+    -> levou 12s
+--- 17:27:41 | arquivo=100kb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 100kb    | DNS=  100.7ms | HTTP=  2911.1ms | total=  3012.2ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 100kb    | DNS=  101.2ms | HTTP=  7125.5ms | total=  7226.8ms |   102400b | retrans=   2 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  101.1ms | HTTP=  8144.7ms | total=  8245.9ms |   102400b | retrans=   2 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  101.0ms | HTTP= 13137.8ms | total= 13239.3ms |   102400b | retrans=   3 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  100.4ms | HTTP=  7124.1ms | total=  7225.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  100.4ms | HTTP=  6129.2ms | total=  6229.8ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  101.4ms | HTTP= 11142.4ms | total= 11243.9ms |   102400b | retrans=   1 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  100.5ms | HTTP=  9921.5ms | total= 10022.1ms |   102400b | retrans=   2 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  100.6ms | HTTP= 17139.1ms | total= 17239.9ms |   102400b | retrans=   3 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  100.4ms | HTTP= 10143.3ms | total= 10243.9ms |   102400b | retrans=   1 | ok=True
+    -> levou 97s
+--- 17:29:18 | arquivo=1mb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.5ms | HTTP=  7625.9ms | total=  7726.9ms |   816488b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.5ms | HTTP=  7721.6ms | total=  7822.8ms |   751328b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.5ms | HTTP=  9941.7ms | total= 10042.8ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.7ms | HTTP=  7101.8ms | total=  7202.7ms |   561640b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.5ms | HTTP=  6133.3ms | total=  6234.4ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.7ms | HTTP=  7846.5ms | total=  7947.6ms |   621008b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.5ms | HTTP=  8859.3ms | total=  8960.3ms |  1042376b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.5ms | HTTP=  1911.3ms | total=  2012.5ms |  1048576b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  102.3ms | HTTP=  6057.5ms | total=  6167.5ms |   663000b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  100.6ms | HTTP= 11950.1ms | total= 12051.5ms |   890336b | retrans=   0 | ok=True
+    -> levou 79s
+--- 17:30:37 | arquivo=1mb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 1mb      | DNS=  100.5ms | HTTP= 92568.7ms | total= 92669.7ms |  1048576b | retrans=  18 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  100.5ms | HTTP= 74296.5ms | total= 74397.6ms |  1048576b | retrans=   4 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  100.6ms | HTTP= 93439.5ms | total= 93540.8ms |  1048576b | retrans=  20 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  101.1ms | HTTP= 82503.1ms | total= 82605.8ms |  1048576b | retrans=  11 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  100.8ms | HTTP= 74489.4ms | total= 74591.0ms |  1048576b | retrans=  12 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  101.1ms | HTTP= 96452.3ms | total= 96554.1ms |  1048576b | retrans=  13 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  100.7ms | HTTP=106535.1ms | total=106636.3ms |  1048576b | retrans=  14 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  101.1ms | HTTP= 82442.2ms | total= 82543.9ms |  1048576b | retrans=  15 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  100.9ms | HTTP= 82438.0ms | total= 82539.5ms |  1048576b | retrans=  11 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  100.8ms | HTTP= 98472.8ms | total= 98574.1ms |  1048576b | retrans=  14 | ok=True
+    -> levou 888s
+--- 17:45:26 | arquivo=10mb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 10mb     | DNS=  100.6ms | HTTP=  8066.9ms | total=  8168.2ms |   454487b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  101.1ms | HTTP=  9657.9ms | total=  9759.9ms |  1259575b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  101.3ms | HTTP=  6637.9ms | total=  6739.7ms |   813591b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  100.6ms | HTTP=  6324.0ms | total=  6425.0ms |   657207b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  100.5ms | HTTP=  6514.4ms | total=  6615.7ms |   384983b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  100.7ms | HTTP= 11141.1ms | total= 11242.9ms |  1915519b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  100.9ms | HTTP= 10159.3ms | total= 10260.8ms |  1094503b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  100.6ms | HTTP=  8269.9ms | total=  8370.9ms |   550055b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS= 1102.5ms | HTTP=  8081.4ms | total=  9184.2ms |   781735b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS= 1101.7ms | HTTP=  6278.8ms | total=  7380.8ms |   450143b | retrans=   0 | ok=True
+    -> levou 87s
+--- 17:46:52 | arquivo=10mb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 10mb     | DNS= 1101.6ms | HTTP=895893.7ms | total=897002.2ms | 10485760b | retrans= 161 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  108.6ms | HTTP=855968.4ms | total=856081.9ms | 10485760b | retrans= 146 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  103.2ms | HTTP=868657.0ms | total=868766.8ms | 10485760b | retrans= 132 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  110.4ms | HTTP=893571.1ms | total=893690.7ms | 10485760b | retrans= 167 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS= 2103.9ms | HTTP=875658.7ms | total=877784.7ms | 10485760b | retrans= 112 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  113.0ms | HTTP=862272.8ms | total=862397.3ms | 10485760b | retrans= 160 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  106.0ms | HTTP=852660.7ms | total=852775.9ms | 10485760b | retrans= 120 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  103.5ms | HTTP=848553.3ms | total=848661.7ms | 10485760b | retrans= 142 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  100.6ms | HTTP=849597.7ms | total=849703.3ms | 10485760b | retrans= 131 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS= 1102.2ms | HTTP=901887.4ms | total=902993.9ms | 10485760b | retrans= 144 | ok=True
+    -> levou 8733s
+ Cenário B concluído em 164 min
+
+==============================================
+ CENÁRIO C — perda=10% delay=100ms (simétrico nos 3 containers)
+==============================================
+Verificação (deve ser igual nos 3):
+  redes2_client: qdisc netem 8017: root refcnt 13 limit 1000 delay 100ms loss 10%
+  redes2_server: qdisc netem 8018: root refcnt 13 limit 1000 delay 100ms loss 10%
+  redes2_dns: qdisc netem 8019: root refcnt 13 limit 1000 delay 100ms loss 10%
+--- 20:12:27 | arquivo=100kb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 100kb    | DNS=  201.6ms | HTTP=  1424.5ms | total=  1627.1ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  200.9ms | HTTP=  3049.0ms | total=  3250.4ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  200.4ms | HTTP=  2165.2ms | total=  2365.8ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  200.7ms | HTTP=  2205.8ms | total=  2406.7ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS= 2203.2ms | HTTP=  1403.1ms | total=  3607.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  200.8ms | HTTP=  2607.0ms | total=  2808.0ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  201.0ms | HTTP=  1404.6ms | total=  1606.7ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  200.5ms | HTTP=  3010.0ms | total=  3210.9ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS= 1203.5ms | HTTP=  1406.1ms | total=  2610.2ms |   102400b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 100kb    | DNS=  200.7ms | HTTP=  1405.7ms | total=  1606.6ms |   102400b | retrans=   0 | ok=True
+    -> levou 28s
+--- 20:12:55 | arquivo=100kb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 100kb    | DNS=  200.9ms | HTTP= 25048.3ms | total= 25249.4ms |   102400b | retrans=   5 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  202.0ms | HTTP= 19045.6ms | total= 19248.6ms |   102400b | retrans=   3 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  200.5ms | HTTP= 22038.8ms | total= 22239.6ms |   102400b | retrans=   5 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS= 1202.1ms | HTTP= 16990.0ms | total= 18192.2ms |   102400b | retrans=   3 | ok=True
+[WEB-CLIENT] RUDP | 100kb    | DNS=  200.8ms | HTTP= 10016.0ms | total= 10217.7ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 100kb    | DNS= 1224.3ms | HTTP= 10019.7ms | total= 11244.1ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 100kb    | DNS= 1202.0ms | HTTP= 10013.7ms | total= 11215.8ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 100kb    | DNS=  200.4ms | HTTP= 10008.2ms | total= 10209.1ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 100kb    | DNS=  200.5ms | HTTP= 10011.1ms | total= 10212.4ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 100kb    | DNS=  200.8ms | HTTP= 10024.4ms | total= 10225.3ms |        0b | retrans=   0 | ok=False
+    -> levou 152s
+--- 20:15:27 | arquivo=1mb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 1mb      | DNS=  201.3ms | HTTP= 14055.2ms | total= 14256.8ms |   453040b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  200.4ms | HTTP= 14469.4ms | total= 14670.0ms |   419736b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  201.4ms | HTTP=  8467.3ms | total=  8668.8ms |   298104b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  200.5ms | HTTP=  8608.1ms | total=  8809.8ms |   324168b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  200.9ms | HTTP= 13393.6ms | total= 13595.5ms |   629696b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  201.3ms | HTTP= 10863.5ms | total= 11065.7ms |   455936b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  200.7ms | HTTP= 15732.6ms | total= 15933.7ms |   890336b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  200.5ms | HTTP= 10198.7ms | total= 10399.3ms |   143168b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS=  200.4ms | HTTP=  8528.1ms | total=  8728.7ms |   221360b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 1mb      | DNS= 1201.7ms | HTTP= 12080.8ms | total= 13283.1ms |   305344b | retrans=   0 | ok=True
+    -> levou 122s
+--- 20:17:29 | arquivo=1mb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 1mb      | DNS=  200.4ms | HTTP=  4507.3ms | total=  4712.6ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 1mb      | DNS= 1201.6ms | HTTP=207674.6ms | total=208877.0ms |  1048576b | retrans=  35 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS= 3203.9ms | HTTP=176706.2ms | total=179910.7ms |  1048576b | retrans=  21 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS= 1212.5ms | HTTP=179591.3ms | total=180804.2ms |  1048576b | retrans=  29 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  200.5ms | HTTP=176268.1ms | total=176469.9ms |  1048576b | retrans=  23 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  200.5ms | HTTP=173332.1ms | total=173533.5ms |  1048576b | retrans=  30 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  201.0ms | HTTP= 12213.5ms | total= 12414.6ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 1mb      | DNS=  200.5ms | HTTP=183669.4ms | total=183870.4ms |  1048576b | retrans=  24 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS= 1201.8ms | HTTP=178772.2ms | total=179975.3ms |  1048576b | retrans=  31 | ok=True
+[WEB-CLIENT] RUDP | 1mb      | DNS=  200.9ms | HTTP=171685.5ms | total=171886.8ms |  1048576b | retrans=  27 | ok=True
+    -> levou 1479s
+--- 20:42:08 | arquivo=10mb transporte=tcp (10 execuções) ---
+[WEB-CLIENT] TCP  | 10mb     | DNS=  200.7ms | HTTP= 14546.1ms | total= 14747.2ms |   453039b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS= 1202.2ms | HTTP=  8334.0ms | total=  9536.5ms |   300999b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  201.3ms | HTTP= 10921.3ms | total= 11123.5ms |   629695b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  200.9ms | HTTP= 14997.3ms | total= 15199.4ms |   300999b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  205.5ms | HTTP= 19066.3ms | total= 19272.1ms |   499375b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  200.7ms | HTTP= 15236.6ms | total= 15437.8ms |   583359b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  200.8ms | HTTP= 11274.8ms | total= 11475.8ms |   351679b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  201.0ms | HTTP= 10210.0ms | total= 10411.2ms |   208327b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  201.6ms | HTTP= 13329.6ms | total= 13531.6ms |   458831b | retrans=   0 | ok=True
+[WEB-CLIENT] TCP  | 10mb     | DNS=  200.5ms | HTTP= 11471.2ms | total= 11671.8ms |   366159b | retrans=   0 | ok=True
+    -> levou 135s
+--- 20:44:23 | arquivo=10mb transporte=rudp (10 execuções) ---
+[WEB-CLIENT] RUDP | 10mb     | DNS=  205.0ms | HTTP=1863283.6ms | total=1863503.7ms | 10485760b | retrans= 287 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  209.0ms | HTTP=1823265.7ms | total=1823489.3ms | 10485760b | retrans= 290 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  204.6ms | HTTP=1848569.0ms | total=1848787.2ms | 10485760b | retrans= 293 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  207.5ms | HTTP=1842661.3ms | total=1842889.1ms | 10485760b | retrans= 266 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  205.8ms | HTTP=1864867.6ms | total=1865100.3ms | 10485760b | retrans= 288 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  217.3ms | HTTP=1901282.9ms | total=1901528.4ms | 10485760b | retrans= 278 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  206.3ms | HTTP=1891181.6ms | total=1891413.9ms | 10485760b | retrans= 304 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  204.9ms | HTTP= 11214.4ms | total= 11419.5ms |        0b | retrans=   0 | ok=False
+[WEB-CLIENT] RUDP | 10mb     | DNS=  203.5ms | HTTP=1891880.6ms | total=1892110.0ms | 10485760b | retrans= 262 | ok=True
+[WEB-CLIENT] RUDP | 10mb     | DNS=  208.2ms | HTTP=1080243.9ms | total=1080468.3ms |  5680967b | retrans= 166 | ok=True
+    -> levou 16161s
+ Cenário C concluído em 301 min
+
+==============================================
+ Concluído! Logs em: logs/webclient_scenario{A,B,C}.log
+ Total de execuções: 180
+ Tempo total: 477 minutos
+ Fim: seg, 22 de jun de 2026 01:13:45
+==============================================

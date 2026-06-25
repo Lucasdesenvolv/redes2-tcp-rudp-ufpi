@@ -8,6 +8,21 @@ networks:
         - subnet: 172.28.0.0/24
 
 services:
+  dns:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dns
+    container_name: redes2_dns
+    networks:
+      testnet:
+        ipv4_address: 172.28.0.30
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ../logs:/app/logs
+    command: python3 /app/dns/dns_server.py --port 9053 --zone /app/dns/hosts.txt --log /app/logs/dns_server.log
+
   server:
     build:
       context: ..
@@ -19,7 +34,16 @@ services:
     cap_add:
       - NET_ADMIN
       - NET_RAW
-    command: bash -c "mkdir -p /app/logs /app/received && python3 /app/tcp/tcp_server.py --port 9001 --log /app/logs/tcp_server.log & python3 /app/rudp/rudp_server.py --port 9002 --log /app/logs/rudp_server.log & wait"
+    volumes:
+      - ../logs:/app/logs
+      - ../received:/app/received
+      - ../captures:/app/captures
+    command: bash -c "mkdir -p /app/logs /app/received && \
+      python3 /app/tcp/tcp_server.py --port 9001 --log /app/logs/tcp_server.log & \
+      python3 /app/rudp/rudp_server.py --port 9002 --log /app/logs/rudp_server.log & \
+      python3 /app/http/http_server_tcp.py --port 8080 --www /app/http/www --log /app/logs/http_tcp_server.log & \
+      python3 /app/http/http_server_rudp.py --port 9092 --www /app/http/www --log /app/logs/http_rudp_server.log & \
+      wait"
 
   client:
     build:
@@ -32,6 +56,11 @@ services:
     cap_add:
       - NET_ADMIN
       - NET_RAW
+    volumes:
+      - ../logs:/app/logs
+      - ../received:/app/received
+      - ../captures:/app/captures
     depends_on:
       - server
+      - dns
     command: sleep infinity
